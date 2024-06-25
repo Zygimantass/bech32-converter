@@ -1,11 +1,6 @@
-import { Form, LaunchProps, ActionPanel, Action, showToast, Clipboard, Toast } from "@raycast/api";
+import { LaunchProps, showToast, Clipboard } from "@raycast/api";
 
 import { fromBech32, toBech32 } from "@cosmjs/encoding";
-
-type Values = {
-  address: string;
-  prefix: string;
-};
 
 export default async function Command(props: LaunchProps<{ arguments: Arguments.Convert }>) {
   let converted;
@@ -22,6 +17,6 @@ export default async function Command(props: LaunchProps<{ arguments: Arguments.
     return;
   }
 
-  const address = await Clipboard.copy(converted)
+  await Clipboard.copy(converted);
   await showToast({ title: "Converted address copied to clipboard", message: converted });
 }
